@@ -1,0 +1,60 @@
+{
+  "name": "I. Roig · Universo 404",
+  "short_name": "Universo 404",
+  "description": "Web oficial de I. Roig: novelas del Universo 404, grimorio narrativo, Nocturne y proyectos digitales 404.",
+  "lang": "es",
+  "id": "/i.roig/",
+  "start_url": "/i.roig/",
+  "scope": "/i.roig/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b0b10",
+  "theme_color": "#0b0b10",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Novelas",
+      "url": "/i.roig/#novelas",
+      "description": "Abrir catálogo de novelas"
+    },
+    {
+      "name": "Por dónde empezar",
+      "url": "/i.roig/#empezar",
+      "description": "Elegir una ruta de lectura"
+    },
+    {
+      "name": "Portal Apps 404",
+      "url": "/i.roig/#proyectos",
+      "description": "Abrir el acceso a proyectos de I. Roig"
+    },
+    {
+      "name": "Nocturne",
+      "url": "/i.roig/#nocturne",
+      "description": "Abrir sonidos para leer"
+    }
+  ],
+  "categories": [
+    "books",
+    "entertainment",
+    "productivity"
+  ]
+}
