@@ -1,0 +1,705 @@
+/* ============================================================
+   I. ROIG · UNIVERSO 404 — v6 "EDICIÓN IMPRESA"
+   Dirección: editorial de horror impresa. Tinta, hueso y sangre.
+   Bloques sólidos, bordes duros, serif slab de cartel,
+   metadata en monoespaciada. Firma visual: LA GRIETA.
+   ============================================================ */
+
+:root {
+  --ink: #0b0a08;
+  --ink-2: #131110;
+  --panel: #17140f;
+  --line: #2b2620;
+  --bone: #ece3d4;
+  --ash: #a89f8f;
+  --blood: #c1121f;
+  --blood-deep: #780000;
+  --font-display: 'Alfa Slab One', 'Rockwell Extra Bold', Georgia, serif;
+  --font-body: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--bone);
+  background: var(--ink);
+  min-height: 100vh;
+}
+/* Grano de papel impreso */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .5;
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.012) 0 1px, transparent 1px 3px);
+}
+a { color: inherit; text-decoration: none; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--blood);
+  color: var(--bone);
+  padding: 12px 18px;
+  font-family: var(--font-mono);
+}
+.skip-link:focus { left: 0; }
+
+/* ------------------------------------------------------------
+   CABECERA — barra de imprenta
+   ------------------------------------------------------------ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(18px, 4vw, 56px);
+  height: 64px;
+  background: var(--ink);
+  border-bottom: 3px solid var(--blood);
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: .04em;
+  color: var(--bone);
+}
+.logo::after {
+  content: " /404";
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  color: var(--blood);
+  vertical-align: super;
+}
+.nav { display: flex; gap: 4px; }
+.nav a {
+  font-family: var(--font-mono);
+  font-size: .76rem;
+  text-transform: uppercase;
+  letter-spacing: .11em;
+  color: var(--ash);
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  transition: color .15s, background .15s;
+}
+.nav a:hover { color: var(--ink); background: var(--bone); }
+.nav-toggle {
+  display: none;
+  width: 46px;
+  height: 42px;
+  background: transparent;
+  border: 2px solid var(--bone);
+  color: var(--bone);
+  padding: 0;
+  border-radius: 0;
+  position: relative;
+  cursor: pointer;
+}
+.nav-toggle span { display: block; width: 20px; height: 2px; margin: 5px auto; background: var(--bone); transition: transform .22s ease, opacity .22s ease; }
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ------------------------------------------------------------
+   REPRODUCTOR DE ATMÓSFERA — consola mono flotante
+   ------------------------------------------------------------ */
+.music-player {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--ink-2);
+  border: 2px solid var(--line);
+  border-left: 4px solid var(--blood);
+  font-family: var(--font-mono);
+}
+.music-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: var(--bone);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  cursor: pointer;
+  padding: 6px 4px;
+}
+.music-toggle .music-icon { color: var(--blood); font-size: 1rem; }
+.music-toggle.playing .music-icon { animation: pulse 1.4s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .35; } }
+.volume-control {
+  font-size: .68rem;
+  color: var(--ash);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.music-volume { width: 78px; accent-color: var(--blood); }
+
+/* ------------------------------------------------------------
+   TIPOGRAFÍA BASE
+   ------------------------------------------------------------ */
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin-top: 0; }
+h1 { font-size: clamp(3.4rem, 10vw, 8.5rem); line-height: .92; letter-spacing: .01em; margin-bottom: 26px; text-transform: uppercase; }
+h2 { font-size: clamp(1.9rem, 4.4vw, 3.6rem); line-height: 1; margin-bottom: 18px; text-transform: uppercase; }
+h3 { font-size: 1.35rem; margin-bottom: 10px; }
+p, li { color: var(--ash); font-size: 1.04rem; line-height: 1.75; margin-top: 0; }
+strong { color: var(--bone); }
+.eyebrow {
+  font-family: var(--font-mono);
+  color: var(--blood);
+  text-transform: uppercase;
+  letter-spacing: .28em;
+  font-size: .74rem;
+  margin-bottom: 14px;
+}
+.eyebrow::before { content: "// "; color: var(--ash); }
+
+.section {
+  position: relative;
+  padding: clamp(64px, 8vw, 110px) clamp(18px, 5vw, 80px);
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+/* LA GRIETA — divisor firma entre secciones */
+.section-heading { max-width: 800px; margin-bottom: 40px; }
+.section-heading h2 { position: relative; padding-bottom: 18px; }
+.section-heading h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 140px;
+  height: 5px;
+  background: var(--blood);
+  transform: skewX(-24deg);
+  box-shadow: 152px 0 0 -1px var(--blood-deep);
+}
+
+/* ------------------------------------------------------------
+   HERO — cartel de cine con tajo diagonal
+   ------------------------------------------------------------ */
+.hero {
+  display: grid;
+  grid-template-columns: 1.35fr .85fr;
+  min-height: 78vh;
+  align-items: center;
+  gap: 42px;
+}
+.hero-grieta {
+  position: relative;
+  max-width: none;
+  min-height: calc(100vh - 64px);
+  padding-left: clamp(18px, 6vw, 96px);
+  padding-right: clamp(18px, 6vw, 96px);
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 6px solid var(--blood);
+}
+.hero-grieta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: image-set(url('assets/la-grieta-hero.webp') type('image/webp'), url('assets/la-grieta-hero.jpg') type('image/jpeg'));
+  background-position: center;
+  background-size: cover;
+  filter: brightness(.55) contrast(1.15) saturate(.85);
+}
+/* EL TAJO: grieta diagonal roja que corta el hero */
+.hero-grieta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(115deg, transparent 0 54.62%, var(--blood) 54.62% 54.98%, transparent 54.98% 55.85%, var(--blood-deep) 55.85% 56.05%, transparent 56.05%),
+    linear-gradient(90deg, rgba(11,10,8,.94) 0%, rgba(11,10,8,.55) 46%, rgba(11,10,8,.82) 100%);
+}
+.hero-grieta .hero-content {
+  max-width: 780px;
+  padding: clamp(22px, 4vw, 40px);
+  background: rgba(11,10,8,.66);
+  border-left: 6px solid var(--blood);
+}
+.hero-grieta h1 {
+  color: var(--bone);
+  text-shadow: 6px 6px 0 var(--ink), 9px 9px 0 var(--blood-deep);
+}
+.hero-text { max-width: 640px; font-size: 1.28rem; color: var(--bone); }
+.hero-text strong { color: var(--blood); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .06em; font-size: 1.05rem; }
+
+.hero-actions, .book-actions, .social-links { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.hero-actions { margin-top: 32px; }
+
+/* Botones tipo sello de imprenta */
+.btn {
+  font-family: var(--font-mono);
+  font-size: .84rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  padding: 14px 22px;
+  border: 2px solid var(--bone);
+  border-radius: 0;
+  color: var(--bone);
+  background: transparent;
+  transition: background .15s, color .15s, transform .15s, box-shadow .15s;
+}
+.btn.primary {
+  background: var(--blood);
+  border-color: var(--blood);
+  color: var(--bone);
+  box-shadow: 5px 5px 0 var(--blood-deep);
+}
+.btn.primary:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--blood-deep); }
+.btn.ghost:hover { background: var(--bone); color: var(--ink); }
+
+/* Tarjeta Ω del hero: placa sólida */
+.hero-card {
+  background: var(--ink-2);
+  border: 2px solid var(--line);
+  border-top: 6px solid var(--blood);
+  padding: 34px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.omega {
+  font-size: 7rem;
+  color: var(--blood);
+  line-height: .8;
+  font-family: var(--font-display);
+}
+.hero-card h2 { font-size: 1.6rem; margin: 14px 0 10px; }
+
+/* ------------------------------------------------------------
+   FRANJA AMAZON — banda de aviso
+   ------------------------------------------------------------ */
+.amazon-strip {
+  max-width: 1120px;
+  margin: -30px auto 0;
+  position: relative;
+  z-index: 2;
+  padding: 20px clamp(18px, 4vw, 32px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  background: var(--bone);
+  color: var(--ink);
+  border: none;
+}
+.amazon-strip strong { display: block; color: var(--ink); font-family: var(--font-display); font-size: clamp(1.1rem, 3vw, 1.5rem); text-transform: uppercase; }
+.amazon-strip span { display: block; color: #57503f; margin-top: 4px; font-family: var(--font-mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; }
+.amazon-strip .btn.primary { box-shadow: 5px 5px 0 var(--ink); }
+
+/* ------------------------------------------------------------
+   ESTADÍSTICAS — cifras de imprenta
+   ------------------------------------------------------------ */
+.stats-section { padding-top: 44px; padding-bottom: 10px; }
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 2px solid var(--line); }
+.stats-grid article {
+  padding: 28px 20px;
+  text-align: center;
+  background: var(--ink-2);
+  border-radius: 0;
+  border-right: 2px solid var(--line);
+}
+.stats-grid article:last-child { border-right: none; }
+.stats-grid strong { display: block; font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 4.4rem); color: var(--blood); line-height: 1; }
+.stats-grid span { color: var(--ash); text-transform: uppercase; letter-spacing: .16em; font-size: .74rem; font-family: var(--font-mono); }
+
+/* ------------------------------------------------------------
+   CATÁLOGO — expedientes numerados
+   ------------------------------------------------------------ */
+.catalog-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+  padding: 14px 18px;
+  background: var(--ink-2);
+  border-left: 4px solid var(--blood);
+}
+.catalog-toolbar p { margin: 0; font-size: .92rem; }
+.tag, .status {
+  font-family: var(--font-mono);
+  color: var(--blood);
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+}
+.status { border: 1px solid var(--blood); padding: 7px 12px; border-radius: 0; white-space: nowrap; }
+
+.book-grid { display: grid; gap: 0; counter-reset: libro; border: 2px solid var(--line); }
+.editorial-grid { grid-template-columns: repeat(2, 1fr); }
+.book-card {
+  counter-increment: libro;
+  position: relative;
+  display: grid;
+  grid-template-columns: 165px 1fr;
+  gap: 22px;
+  padding: 26px;
+  background: var(--ink);
+  border: none;
+  outline: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+  transition: background .2s;
+}
+.book-card:hover { background: var(--panel); }
+/* Número de expediente */
+.book-info::before {
+  content: "LIBRO " counter(libro, upper-roman);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  letter-spacing: .3em;
+  color: var(--ash);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+.book-cover.image-cover {
+  min-height: auto;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+  border: 2px solid var(--line);
+  border-radius: 0;
+  align-self: start;
+}
+.book-cover.image-cover img {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  object-fit: cover;
+  display: block;
+  transition: transform .25s ease, filter .25s ease;
+}
+.book-cover.image-cover:hover img { transform: scale(1.04); filter: contrast(1.1); }
+.book-info h3 { text-transform: uppercase; letter-spacing: .01em; }
+.book-info > p:not(.tag) { font-size: .96rem; }
+.book-actions { margin-top: 16px; }
+.book-actions .btn { font-size: .74rem; padding: 11px 16px; }
+
+/* ------------------------------------------------------------
+   LÍNEA TEMPORAL DEL UNIVERSO — lomo de colección
+   ------------------------------------------------------------ */
+.timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 2px solid var(--line); }
+.timeline-item {
+  padding: 24px 20px;
+  background: var(--ink-2);
+  border-radius: 0;
+  border-right: 2px solid var(--line);
+  border-bottom: 2px solid var(--line);
+  box-shadow: none;
+}
+.timeline-item span {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  letter-spacing: .2em;
+  color: var(--bone);
+  background: var(--blood);
+  padding: 5px 10px;
+  border-radius: 0;
+  margin-bottom: 16px;
+}
+.timeline-item h3 { font-size: 1.02rem; line-height: 1.25; }
+.timeline-item p { font-size: .9rem; }
+
+/* ------------------------------------------------------------
+   AUTOR — retrato de solapa
+   ------------------------------------------------------------ */
+.author-section { display: grid; grid-template-columns: 320px 1fr; gap: 0; align-items: stretch; }
+.author-photo-wrap {
+  padding: 0;
+  background: var(--blood);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+}
+.author-photo {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 0;
+  filter: grayscale(1) contrast(1.15);
+  mix-blend-mode: multiply;
+  aspect-ratio: auto;
+}
+.author-copy {
+  background: var(--bone);
+  color: var(--ink);
+  border: none;
+  border-radius: 0;
+  padding: clamp(28px, 4vw, 52px);
+  box-shadow: none;
+}
+.author-copy h2, .author-copy strong { color: var(--ink); }
+.author-copy p { color: #45402f; }
+.author-copy .eyebrow { color: var(--blood); }
+.author-copy .eyebrow::before { color: #857c66; }
+.author-copy em { color: var(--blood); font-style: italic; }
+.signature {
+  color: var(--blood);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+/* ------------------------------------------------------------
+   NOCTURNE — placa sonora
+   ------------------------------------------------------------ */
+.nocturne-section { max-width: 1000px; }
+.nocturne-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(30px, 5vw, 56px);
+  background: var(--blood-deep);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.nocturne-card p { color: #e8c9c2; max-width: 720px; }
+.nocturne-card .eyebrow { color: var(--bone); }
+.nocturne-card::after {
+  content: "NOCTURNE";
+  position: absolute;
+  right: -14px;
+  bottom: -22px;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 12vw, 8rem);
+  color: rgba(11,10,8,.28);
+  pointer-events: none;
+}
+.nocturne-card .btn.primary { background: var(--ink); border-color: var(--ink); box-shadow: 5px 5px 0 rgba(0,0,0,.45); }
+.nocturne-card .btn.ghost { border-color: var(--bone); }
+
+.projects-section .nocturne-card {
+  background: var(--ink-2);
+  border: 2px solid var(--line);
+  border-left: 6px solid var(--blood);
+}
+.projects-section .nocturne-card::after { content: "404 APPS"; }
+.projects-section .nocturne-card p { color: var(--ash); }
+.projects-section .nocturne-card .btn.primary { background: var(--blood); border-color: var(--blood); box-shadow: 5px 5px 0 var(--blood-deep); }
+
+
+/* ------------------------------------------------------------
+   CONTACTO Y PIE
+   ------------------------------------------------------------ */
+.contact { text-align: center; max-width: 820px; }
+.contact-box {
+  margin: 24px auto 18px;
+  padding: 18px;
+  display: flex;
+  justify-content: center;
+  background: var(--ink-2);
+  border: 2px solid var(--line);
+}
+.contact-link { color: var(--bone); font-family: var(--font-mono); font-size: 1.1rem; }
+.contact-link:hover { color: var(--blood); }
+.social-links { justify-content: center; margin-top: 20px; }
+.social-links a {
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  border: 2px solid var(--line);
+  border-radius: 0;
+  padding: 12px 16px;
+  color: var(--ash);
+  transition: .15s;
+}
+.social-links a:hover { background: var(--bone); color: var(--ink); border-color: var(--bone); }
+.site-footer {
+  padding: 30px 30px 96px;
+  text-align: center;
+  border-top: 3px solid var(--blood);
+  font-family: var(--font-mono);
+  font-size: .82rem;
+}
+.site-footer a { color: var(--blood); }
+
+/* ------------------------------------------------------------
+   FICHAS DE NOVELA
+   ------------------------------------------------------------ */
+.detail-hero { position: relative; display: grid; grid-template-columns: minmax(260px, 380px) 1fr; gap: clamp(24px, 4vw, 48px); align-items: start; padding-top: clamp(44px, 6vw, 80px); }
+.book-detail-cover {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 2px solid var(--line);
+  box-shadow: 10px 10px 0 var(--blood-deep);
+}
+.book-detail-card {
+  background: var(--ink-2);
+  border: 2px solid var(--line);
+  border-top: 6px solid var(--blood);
+  border-radius: 0;
+  box-shadow: none;
+  padding: clamp(24px, 4vw, 44px);
+}
+.book-detail-card h1 { font-size: clamp(2.2rem, 6vw, 4.2rem); }
+.back-link {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--ash);
+  margin-bottom: 18px;
+}
+.back-link:hover { color: var(--blood); }
+.detail-layout { display: grid; grid-template-columns: 1fr 320px; gap: 0; align-items: stretch; border: 2px solid var(--line); }
+.detail-panel {
+  padding: 28px;
+  background: var(--ink-2);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.detail-layout .detail-panel:first-child { border-right: 2px solid var(--line); }
+.detail-panel ul { padding-left: 20px; margin-bottom: 0; }
+.meta-list div { display: grid; gap: 2px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.meta-list div:last-child { border-bottom: none; }
+.meta-list span { font-family: var(--font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .2em; color: var(--ash); }
+
+/* Galería y reseñas (páginas antiguas, por compatibilidad) */
+.cover-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.cover-gallery a { display: block; border: 2px solid var(--line); background: #000; border-radius: 0; overflow: hidden; }
+.cover-gallery img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; display: block; transition: .25s; }
+.cover-gallery a:hover img { transform: scale(1.04); }
+.reader-section { max-width: 980px; }
+.review-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin-top: 22px; border: 2px solid var(--line); }
+.review-grid article { padding: 24px; background: var(--ink-2); border-radius: 0; box-shadow: none; border-right: 2px solid var(--line); }
+.review-grid article:last-child { border-right: none; }
+
+/* ------------------------------------------------------------
+   ANIMACIONES Y ACCESIBILIDAD
+   ------------------------------------------------------------ */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.delay { transition-delay: .1s; }
+
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--blood);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .music-toggle.playing .music-icon { animation: none; }
+  * { transition-duration: .01ms !important; }
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .editorial-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 950px) {
+  .timeline { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 850px) {
+  .nav-toggle { display: block; }
+  .nav {
+    display: none;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 64px;
+    flex-direction: column;
+    background: var(--ink);
+    border-bottom: 3px solid var(--blood);
+    padding: 12px 18px 18px;
+  }
+  .nav.open { display: flex; }
+  .nav a { padding: 12px; border-bottom: 1px solid var(--line); }
+  .nav a:last-child { border-bottom: none; }
+  body.menu-open { overflow: hidden; }
+
+  .hero, .author-section, .detail-hero, .detail-layout { grid-template-columns: 1fr; }
+  .hero-grieta { min-height: calc(100vh - 64px); }
+  .hero-grieta h1 { text-shadow: 4px 4px 0 var(--ink), 6px 6px 0 var(--blood-deep); }
+  .hero-card { margin-top: 8px; }
+
+  .amazon-strip { flex-direction: column; text-align: center; margin-top: 0; }
+
+  .stats-grid { grid-template-columns: 1fr; }
+  .stats-grid article { border-right: none; border-bottom: 2px solid var(--line); }
+  .stats-grid article:last-child { border-bottom: none; }
+
+  .book-card { grid-template-columns: 1fr; padding: 20px; }
+  .book-cover.image-cover { max-width: min(320px, 88vw); margin: 0 auto; }
+  .book-cover.image-cover img { min-height: 380px; object-fit: contain; background: #000; }
+  .book-actions .btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+
+  .author-photo-wrap { max-width: none; }
+  .author-photo { max-height: 420px; width: 100%; }
+
+  .detail-layout .detail-panel:first-child { border-right: none; border-bottom: 2px solid var(--line); }
+  .book-detail-cover { max-width: min(340px, 86vw); margin: 0 auto; box-shadow: 6px 6px 0 var(--blood-deep); }
+
+  .music-player { right: 10px; bottom: 10px; padding: 8px 10px; }
+  .music-volume { width: 60px; }
+  .review-grid { grid-template-columns: 1fr; }
+  .review-grid article { border-right: none; border-bottom: 2px solid var(--line); }
+  .review-grid article:last-child { border-bottom: none; }
+  .cover-gallery { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .timeline { grid-template-columns: 1fr; }
+  h1 { font-size: clamp(2.6rem, 15vw, 4.4rem); }
+}
+
+
+/* ------------------------------------------------------------
+   GLITCH 404 — efecto inestable en el título del hero
+   ------------------------------------------------------------ */
+@keyframes glitchFlicker{0%,89%,100%{opacity:1;transform:translate(0,0)}90%{opacity:.7;transform:translate(-2px,1px)}92%{opacity:1;transform:translate(2px,-1px)}94%{opacity:.85;transform:translate(-1px,0)}96%{opacity:1;transform:translate(0,0)}}
+@keyframes glitchSplit{0%,89%,100%{opacity:0;clip-path:inset(0 0 100% 0);transform:translate(0,0)}90%{opacity:.75;clip-path:inset(10% 0 60% 0);transform:translate(-4px,0)}92%{opacity:.75;clip-path:inset(60% 0 5% 0);transform:translate(4px,0)}94%{opacity:0;clip-path:inset(0 0 100% 0);transform:translate(0,0)}}
+@keyframes scanMove{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+
+.glitch-title{position:relative;display:inline-block;animation:glitchFlicker 3.4s infinite}
+.glitch-title::before{content:attr(data-text);position:absolute;inset:0;color:var(--blood);opacity:.65;animation:glitchSplit 3.4s infinite;pointer-events:none}
+
+.scan-overlay{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.scan-overlay::before{content:"";position:absolute;left:0;right:0;height:30%;background:rgba(0,229,199,.05);animation:scanMove 4s linear infinite}
+
+
+
+/* Glitch al pasar el ratón sobre botones principales */
+@keyframes btnGlitch{0%,100%{transform:translate(0,0);text-shadow:none}20%{transform:translate(-2px,1px);text-shadow:2px 0 #00e5c7,-2px 0 var(--blood-deep)}40%{transform:translate(2px,-1px);text-shadow:-2px 0 #00e5c7,2px 0 var(--blood-deep)}60%{transform:translate(-1px,0);text-shadow:1px 0 #00e5c7,-1px 0 var(--blood-deep)}80%{transform:translate(1px,1px);text-shadow:none}}
+.btn.primary:hover{animation:btnGlitch .4s steps(2) infinite}
+
+.back-to-top{position:fixed;left:16px;bottom:16px;z-index:30;width:44px;height:44px;background:var(--ink-2);border:2px solid var(--line);border-left:4px solid var(--blood);color:var(--bone);font-size:1.1rem;line-height:1;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility .2s}
+.back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.back-to-top:hover{background:var(--blood);color:var(--ink)}
